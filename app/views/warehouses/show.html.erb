@@ -1,0 +1,23 @@
+<%= flash['alert'] %>
+
+<% if @warehouse.empty? %>
+  <strong>Galpão não encontrado</strong>
+<% else %>
+  <h1><%= @warehouse["name"] %></h1>
+  <h2><%= @warehouse["code"] %></h2>
+
+  <div id="detalhes-galpao">
+    <dl>
+      <dt>Descrição:</dt>
+      <dd><%= @warehouse["description"] %></dd>
+      <dt>Endereço:</dt>
+      <dd><%= @warehouse["address"] %> - <%= @warehouse["city"] %>/<%= @warehouse["state"] %></dd>
+      <dt>CEP:</dt>
+      <dd><%= @warehouse["postal_code"] %></dd>
+      <dt>Área Total:</dt>
+      <dd><%= @warehouse["total_area"] %> m2</dd>
+      <dt>Área Útil:</dt>
+      <dd><%= @warehouse["useful_area"] %> m2</dd>
+    </dl>
+  </div>
+<% end %>
