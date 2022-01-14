@@ -6,8 +6,8 @@ describe 'Visitor view warehouses details' do
     warehouse = File.read(Rails.root.join('spec','support','api_resources','warehouse.json'))
     response_warehouses = Faraday::Response.new(status: 200, response_body: warehouses)
     response_warehouse = Faraday::Response.new(status: 200, response_body: warehouse)
-    allow(Faraday).to receive(:get).with("http://localhost:3000/api/v1/warehouses").and_return(response_warehouses)
-    allow(Faraday).to receive(:get).with("http://localhost:3000/api/v1/warehouses/1").and_return(response_warehouse)
+    allow(Faraday).to receive(:get).with("http://localhost:8000/api/v1/warehouses").and_return(response_warehouses)
+    allow(Faraday).to receive(:get).with("http://localhost:8000/api/v1/warehouses/1").and_return(response_warehouse)
      
     visit root_path
     click_on 'Juiz de Fora'
@@ -27,20 +27,29 @@ describe 'Visitor view warehouses details' do
   end
 
   it "and the warehouse doesn't exist" do
-    response_warehouse = Faraday::Response.new(status: 200, response_body: '{}')
-    allow(Faraday).to receive(:get).with("http://localhost:3000/api/v1/warehouses/777").and_return(response_warehouse)
+    warehouses = File.read(Rails.root.join('spec','support','api_resources','warehouses.json'))
+    response_warehouses = Faraday::Response.new(status: 200, response_body: warehouses)
+    response_warehouse = Faraday::Response.new(status: 404, response_body: '{}')
+    allow(Faraday).to receive(:get).with("http://localhost:8000/api/v1/warehouses").and_return(response_warehouses)
+    allow(Faraday).to receive(:get).with("http://localhost:8000/api/v1/warehouses/777").and_return(response_warehouse)
      
     visit warehouse_path(777)
 
-    expect(page).to have_content 'Galpão não encontrado'
+    expect(current_path).to eq root_path
+    expect(page).to have_content 'Não foi possível carregar dados do galpão no momento'
   end
 
   it 'and render an error message if API is unavailable' do
-    response = Faraday::Response.new(status: 503, response_body: '{}')
-    allow(Faraday).to receive(:get).with('http://localhost:3000/api/v1/warehouses/1').and_return(response)
-
-    visit warehouse_path(1)
-
-    expect(page).to have_content('Não foi possível carregar dados do galpão')
+    warehouses = File.read(Rails.root.join('spec','support','api_resources','warehouses.json'))
+    response_warehouses = Faraday::Response.new(status: 200, response_body: warehouses)
+    response_warehouse = Faraday::Response.new(status: 500, response_body: '{}')
+    allow(Faraday).to receive(:get).with("http://localhost:8000/api/v1/warehouses").and_return(response_warehouses)
+    allow(Faraday).to receive(:get).with("http://localhost:8000/api/v1/warehouses/1").and_return(response_warehouse)
+     
+    visit root_path
+    click_on 'Juiz de Fora'
+  
+    expect(current_path).to eq root_path
+    expect(page).to have_content('Não foi possível carregar dados do galpão no momento')
   end
 end

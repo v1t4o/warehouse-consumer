@@ -8,6 +8,7 @@ Bundler.require(*Rails.groups)
 
 module WarehouseConsumer
   class Application < Rails::Application
+    config.apis = config_for(:apis)
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 

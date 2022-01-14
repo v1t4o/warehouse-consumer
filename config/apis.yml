@@ -1,0 +1,8 @@
+development:
+  warehouse_api: http://localhost:8000
+
+test:
+  warehouse_api: http://localhost:8000
+
+production:
+  warehouse_api: http://galpoes.com.br

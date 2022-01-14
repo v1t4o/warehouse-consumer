@@ -1,11 +1,13 @@
 class WarehousesController < ApplicationController
   def show
-    response = Faraday.get("http://localhost:3000/api/v1/warehouses/#{params[:id]}")
+    api_domain = Rails.configuration.apis["warehouse_api"]
+    response = Faraday.get("#{api_domain}/api/v1/warehouses/#{params[:id]}")
     @warehouse = []
     if response.status == 200
       @warehouse = JSON.parse(response.body)
-      return
+    else
+      flash['alert'] = 'Não foi possível carregar dados do galpão no momento'
+      redirect_to root_path
     end
-    flash.now['alert'] = 'Não foi possível carregar dados do galpão'
   end
 end
