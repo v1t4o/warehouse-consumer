@@ -15,8 +15,9 @@ describe 'Visitor view warehouses' do
     expect(page).to have_content 'JDF'
   end
 
-  it 'and thres no warehouse' do
+  it 'and theres no warehouse' do
     allow(Warehouse).to receive(:all).and_return([])
+    
     visit root_path
 
     expect(page).to have_content 'Nenhum galpão cadastrado'

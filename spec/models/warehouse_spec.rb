@@ -34,4 +34,17 @@ describe Warehouse do
       expect(result).to eq nil
     end    
   end
+
+  context '.find(id)' do
+    it 'should return a warehouse' do
+      warehouse_data = File.read(Rails.root.join('spec','support','api_resources','warehouse.json'))
+      response = Faraday::Response.new(status: 200, response_body: warehouse_data)
+      allow(Faraday).to receive(:get).with('http://localhost:8000/api/v1/warehouses/1').and_return(response)
+
+      result = Warehouse.find(1)
+
+      expect(result.name).to eq 'Juiz de Fora'
+      expect(result.code).to eq 'JDF'
+    end
+  end
 end

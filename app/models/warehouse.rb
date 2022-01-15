@@ -1,5 +1,5 @@
 class Warehouse
-  attr_accessor :id, :name, :code
+  attr_accessor :id, :name, :code, :description, :address, :city, :state, :postal_code, :total_area, :useful_area
 
   def initialize(id:, name:, code:, description:, address:, city:, state:, postal_code:, total_area:, useful_area:)
     @id = id
@@ -23,6 +23,21 @@ class Warehouse
       warehouses.each do |warehouse|
         result << Warehouse.new(id: warehouse["id"],name: warehouse["name"], code: warehouse["code"],  description: warehouse["description"], address: warehouse["address"], city: warehouse["city"], state: warehouse["state"], postal_code: warehouse["postal_code"], total_area: warehouse["total_area"], useful_area: warehouse["useful_area"])
       end
+    else
+      return nil
+    end
+    return result
+  end
+
+  def self.find(id)
+    api_domain = Rails.configuration.apis["warehouse_api"]
+    response = Faraday.get("#{api_domain}/api/v1/warehouses/#{id}")
+    result = []
+    if response.status == 200
+      warehouse = JSON.parse(response.body)
+      result = Warehouse.new(id: warehouse["id"],name: warehouse["name"], code: warehouse["code"],  description: warehouse["description"], address: warehouse["address"], city: warehouse["city"], state: warehouse["state"], postal_code: warehouse["postal_code"], total_area: warehouse["total_area"], useful_area: warehouse["useful_area"])
+    elsif response.status == 404
+      return false
     else
       return nil
     end
