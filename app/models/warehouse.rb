@@ -1,7 +1,7 @@
 class Warehouse
   attr_accessor :id, :name, :code, :description, :address, :city, :state, :postal_code, :total_area, :useful_area
 
-  def initialize(id:, name:, code:, description:, address:, city:, state:, postal_code:, total_area:, useful_area:)
+  def initialize(id: nil, name:, code:, description:, address:, city:, state:, postal_code:, total_area:, useful_area:)
     @id = id
     @name = name
     @code = code
@@ -42,5 +42,18 @@ class Warehouse
       return nil
     end
     return result
+  end
+
+  def self.save(warehouse)
+    api_domain = Rails.configuration.apis["warehouse_api"]
+    params = '{"name": "' + warehouse.name + '", "code": "' + warehouse.code + '", "description": "' + warehouse.description + '", "address": "' + warehouse.address + '", "city": "' + warehouse.city + '", "state": "' + warehouse.state + '", "postal_code": "' + warehouse.postal_code + '", "useful_area": "' + warehouse.useful_area + '", "total_area": "' + warehouse.total_area + '"}'
+    headers = { "Content-Type" => "application/json" }
+    response = Faraday.post("#{api_domain}/api/v1/warehouses", params, headers)
+    if response.status == 201
+      warehouse = JSON.parse(response.body)
+      result = Warehouse.new(id: warehouse["id"],name: warehouse["name"], code: warehouse["code"],  description: warehouse["description"], address: warehouse["address"], city: warehouse["city"], state: warehouse["state"], postal_code: warehouse["postal_code"], total_area: warehouse["total_area"], useful_area: warehouse["useful_area"])
+      return result
+    end
+    return nil
   end
 end

@@ -11,6 +11,17 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <nav>
+        <%= link_to 'Início', root_path %>
+        <%= link_to 'Cadastrar galpão', new_warehouse_path %>
+      </nav>
+    </header>
+
+    <main>
+      <%= yield %>
+    </main>
+
+    <footer>Warehouse App</footer>
   </body>
 </html>

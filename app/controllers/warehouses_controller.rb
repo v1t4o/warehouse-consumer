@@ -9,4 +9,26 @@ class WarehousesController < ApplicationController
       redirect_to root_path
     end
   end
+
+  def new
+  end
+  
+  def create
+    warehouse_params = Warehouse.new(name: params[:name],
+                               code: params[:code],
+                               description: params[:description],
+                               address: params[:address],
+                               state: params[:state],
+                               city: params[:city],
+                               postal_code: params[:postal_code],
+                               useful_area: params[:useful_area],
+                               total_area: params[:total_area]
+                               )
+    @warehouse = Warehouse.save(warehouse_params)
+    if !@warehouse.nil?
+      redirect_to warehouse_path(@warehouse.id)
+    end
+    flash.now[:alert] = 'Não foi possível criar o galpão'
+    render 'new'
+  end
 end
