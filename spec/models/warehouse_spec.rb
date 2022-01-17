@@ -57,7 +57,7 @@ describe Warehouse do
       headers = { "Content-Type" => "application/json" }
       allow(Faraday).to receive(:post).with('http://localhost:8000/api/v1/warehouses', params, headers).and_return(response)
 
-      result = Warehouse.save(warehouse)
+      result = warehouse.save()
 
       expect(result.name).to eq 'Juiz de Fora'
       expect(result.code).to eq 'JDF'

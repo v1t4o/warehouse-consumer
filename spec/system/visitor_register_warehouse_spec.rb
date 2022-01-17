@@ -26,7 +26,7 @@ describe 'Visitor register a warehouse' do
     warehouse_post = Warehouse.new(name: 'Juiz de Fora', code: 'JDF', description: 'Um galpão mineiro com o pé no Rio', address: 'Av Rio Branco', city: 'Juiz de Fora', state: 'MG', postal_code: '36000-000', total_area: '5000', useful_area: '3000')
     warehouse = Warehouse.new(id: 1, name: 'Juiz de Fora', code: 'JDF', description: 'Um galpão mineiro com o pé no Rio', address: 'Av Rio Branco', city: 'Juiz de Fora', state: 'MG', postal_code: '36000-000', total_area: '5000', useful_area: '3000')
     allow(Warehouse).to receive(:all).and_return(warehouses)
-    allow(Warehouse).to receive(:save).with(warehouse_post).and_return(warehouse)
+    allow_any_instance_of(Warehouse).to receive(:save).and_return(warehouse)
     allow(Warehouse).to receive(:find).with(warehouse.id.to_s).and_return(warehouse)
     
     visit root_path

@@ -1,0 +1,11 @@
+{
+  "name":"Juiz de Fora",
+  "code":"JDF",
+  "description":"Um galpão mineiro com o pé no Rio",
+  "address":"Av Rio Branco",
+  "city":"Juiz de Fora",
+  "state":"MG",
+  "postal_code":"36000-000",
+  "total_area":5000,
+  "useful_area":3000
+}
