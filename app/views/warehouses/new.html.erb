@@ -1,39 +1,49 @@
+<h2>Cadastro de Galpão</h2>
 <%= form_with(url: warehouses_path) do |form| %>
-  <div>
-    <%= form.label :name, 'Nome' %>
-    <%= form.text_field(:name)%>
+  <div class="form-group row">
+    <div class="col-sm">
+      <b><%= form.label :name, 'Nome' %></b>
+      <%= form.text_field(:name, class: 'form-control')%>
+    </div>
+    <div class="col-sm">
+      <b><%= form.label :code, 'Código' %></b>
+      <%= form.text_field(:code, class: 'form-control')%>
+    </div>
+    <div class="col-sm">
+      <b><%= form.label :description, 'Descrição' %></b>
+      <%= form.text_field(:description, class: 'form-control')%>
+    </div>
   </div>
-  <div>
-    <%= form.label :code, 'Código' %>
-    <%= form.text_field(:code)%>
+  <div class="form-group">
+    <b><%= form.label :address, 'Endereço' %></b>
+    <%= form.text_field(:address, class: 'form-control')%>
   </div>
-  <div>
-    <%= form.label :description, 'Descrição' %>
-    <%= form.text_field(:description)%>
+  <div class="form-group row">
+    <div class="col-sm">
+      <b><%= form.label :city, 'Cidade' %></b>
+      <%= form.text_field(:city, class: 'form-control')%>
+    </div>
+    <div class="col-sm">
+      <b><%= form.label :state, 'Estado' %></b>
+      <%= form.text_field(:state, class: 'form-control')%>
+    </div>
+    <div class="col-sm">
+      <b><%= form.label :postal_code, 'CEP' %></b>
+      <%= form.text_field(:postal_code, class: 'form-control')%>
+    </div>
   </div>
-  <div>
-    <%= form.label :address, 'Endereço' %>
-    <%= form.text_field(:address)%>
+  <div class="form-group row">
+    <div class="col-sm">
+      <b><%= form.label :total_area, 'Área Total' %></b>
+      <%= form.text_field(:total_area, class: 'form-control')%>
+    </div>
+    <div class="col-sm">
+      <b><%= form.label :useful_area, 'Área Útil' %></b>
+      <%= form.text_field(:useful_area, class: 'form-control')%>
+    </div>
   </div>
-  <div>
-    <%= form.label :city, 'Cidade' %>
-    <%= form.text_field(:city)%>
+  <br>
+  <div class="form-group">
+    <%= form.submit 'Gravar', class: 'btn btn-success' %>
   </div>
-  <div>
-    <%= form.label :state, 'Estado' %>
-    <%= form.text_field(:state)%>
-  </div>
-  <div>
-    <%= form.label :postal_code, 'CEP' %>
-    <%= form.text_field(:postal_code)%>
-  </div>
-  <div>
-    <%= form.label :total_area, 'Área Total' %>
-    <%= form.text_field(:total_area)%>
-  </div>
-  <div>
-    <%= form.label :useful_area, 'Área Útil' %>
-    <%= form.text_field(:useful_area)%>
-  </div>
-  <%= form.submit 'Gravar' %>
 <% end %>
