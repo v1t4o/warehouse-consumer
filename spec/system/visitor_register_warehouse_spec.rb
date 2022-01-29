@@ -6,7 +6,7 @@ describe 'Visitor register a warehouse' do
     allow(Warehouse).to receive(:all).and_return(warehouses)
 
     visit root_path
-    click_on 'Cadastrar galpão'
+    click_on 'Cadastrar Galpão'
 
     expect(current_path).to eq new_warehouse_path
     expect(page).to have_field 'Nome'
@@ -30,7 +30,7 @@ describe 'Visitor register a warehouse' do
     allow(Warehouse).to receive(:find).with(warehouse.id.to_s).and_return(warehouse)
     
     visit root_path
-    click_on 'Cadastrar galpão'
+    click_on 'Cadastrar Galpão'
     fill_in 'Nome', with: 'Juiz de Fora'
     fill_in 'Código', with: 'JDF'
     fill_in 'Endereço', with: 'Av Rio Branco'
@@ -43,8 +43,8 @@ describe 'Visitor register a warehouse' do
     click_on 'Gravar'
 
     expect(current_path).to eq warehouse_path(warehouse.id)
-    expect(page).to have_css('h1', text: 'Juiz de Fora')
-    expect(page).to have_css('h2', text: 'JDF')
+    expect(page).to have_css('h2', text: 'Juiz de Fora')
+    expect(page).to have_css('h4', text: 'JDF')
     expect(page).to have_css('dt', text: 'Descrição:')
     expect(page).to have_css('dd', text: 'Um galpão mineiro com o pé no Rio')
     expect(page).to have_css('dt', text: 'Endereço:')
