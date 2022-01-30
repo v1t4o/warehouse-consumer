@@ -1,56 +1,60 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>WarehouseConsumer</title>
+    <title>Warehouse Consumer</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="http://assets.locaweb.com.br/locastyle/3.10.1/stylesheets/locastyle.css" rel="stylesheet" type="text/css">
+    <link rel="icon" sizes="192x192" href="/locawebstyle/assets/images/ico-boilerplate.png">
+    <link rel="apple-touch-icon" href="/locawebstyle/assets/images/ico-boilerplate.png">
+
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>-->
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="d-flex flex-column min-vh-100">
-    <header class="p-3 bg-dark text-white">
-      <div class="px-3 py-2 bg-dark text-white">
-        <div class="container">
-          <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-            <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
-              <i class="fas fa-pallet" style="font-size:3rem;"></i>            
-            </a>
+  <body class="ls-theme-green">
+    <div class="ls-topbar">
+        
+      <span class="ls-show-sidebar ls-ico-menu"></span>
 
-            <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
-              <li>
-                <a href="/" class="nav-link text-secondary text-center">
-                  <i class="fas fa-home" style="font-size:2rem;"></i><br>                  
-                  Início
-                </a>
-              </li>
-              <li>
-                <a href="/warehouses/new" class="nav-link text-white text-center">
-                  <i class="fas fa-plus-square" style="font-size:2rem;"></i><br>                 
-                  Cadastrar Galpão
-                </a>
-              </li>
+      <!-- Nome do produto/marca com sidebar -->
+        <h1 class="ls-brand-name">
+          <a href="/" class="ls-ico-bukets">
+            <small>Seu App de Galpões</small>
+            Warehouse Consumer
+          </a>
+        </h1>
+
+      <!-- Nome do produto/marca sem sidebar quando for o pre-painel  -->
+    </div>
+
+    <aside class="ls-sidebar">
+
+      <div class="ls-sidebar-inner">
+
+          <nav class="ls-menu">
+            <ul>
+              <li><a href="/" class="ls-ico-home ls-text-lg" title="Início">Início</a></li>
+              <li><a href="/warehouses/new" class="ls-ico-plus ls-text-lg" title="Cadastrar Galpão">Cadastrar Galpão</a></li>
             </ul>
-          </div>
-        </div>
+          </nav>
       </div>
-    </header>
+    </aside>
 
-    <main class="flex-shrink-0">
-      <div class="container">
-        <div class="row"><%= flash['alert'] %></div>
-        <br>
-        <div><%= yield %></div>
+
+    <main class="ls-main ">
+      <div class="container-fluid">
+        <%= yield %>
+      </div>
     </main>
 
-    <footer class="footer mt-auto bg-dark">
-      <br>
-      <p class="text-white text-center">@ Warehouse Consumer 2022</p>
-    </footer>
+    
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="http://assets.locaweb.com.br/locastyle/3.10.1/javascripts/locastyle.js" type="text/javascript"></script>
   </body>
 </html>

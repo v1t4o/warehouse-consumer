@@ -1,26 +1,33 @@
-<h2>Galpões</h2>
-
-<div class="row">
-<% unless @warehouses.nil? %>
-  <% if @warehouses.empty? %>
-    <div class="row">
-      <strong style="color:red;">Nenhum galpão cadastrado</strong>
-    </div>
-  <% else %>
-    <div class="list-group">
-      <% @warehouses.each do |warehouse| %>
-        <a href="/warehouses/<%= warehouse.id %>" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
-          <i class="fas fa-warehouse rounded-circle flex-shrink-0" style="font-size:2rem;padding-top:0.2rem"></i>
-          <div class="d-flex gap-2 w-100 justify-content-between">
-            <div>
-              <h6 class="mb-0"><%= warehouse.name%></h6>
-              <p class="mb-0 opacity-75"><%= warehouse.code %></p>
-            </div>
-            <small class="opacity-50 text-nowrap" style="padding-top:0.5rem"><%= warehouse.id %></small>
-          </div>
-        </a>
-      <% end %>
-    </div>
+<div class="ls-box ls-board-box">
+  <header class="ls-info-header">
+    <h2 class="ls-title-3 ls-ico-home">Galpões</h2>
+  </header>
+  <% unless @warehouses.nil? %>
+    <% if @warehouses.empty? %>
+      <p><strong style="color:red;">Nenhum galpão cadastrado</strong></p>
+    <% else %>
+      <table class="ls-table ls-txt-center ls-table-striped ls-bg-header">
+        <thead>
+          <tr>
+            <th class="ls-text-lg">Nome</th>
+            <th class="ls-text-lg">Código</th>
+            <th class="ls-text-lg">Área Total</th>
+            <th class="ls-text-lg">Área Útil</th>
+            <th class="ls-text-lg">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @warehouses.each do |warehouse| %>
+            <tr class="ls-text-lg">
+              <td class="ls-text-lg"><b><%= warehouse.name%></b></td>
+              <td class="ls-text-lg"><%= warehouse.code %></td>
+              <td class="ls-text-lg"><%= warehouse.total_area %></td>
+              <td class="ls-text-lg"><%= warehouse.useful_area %></td>
+              <td class="ls-text-lg"><a href="/warehouses/<%= warehouse.id %>" class="ls-ico-eye"></a></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
   <% end %>
-<% end %>
 </div>

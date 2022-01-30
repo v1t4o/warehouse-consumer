@@ -1,29 +1,31 @@
 <% unless @warehouse.nil? %>
-  <div class="row">
-    <div class="col-sm">
-      <h2><%= @warehouse.name %></h2>
-    </div>
-    <div class="col-auto float-right">
-      <%= link_to 'Voltar', root_path, class: 'btn btn-primary' %>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-header"><h4><%= @warehouse.code %></h4></div>
-    <div class="card-body">
-      <div id="detalhes-galpao">
-        <dl class="row">
-          <dt class="col-sm-2">Descrição:</dt>
-          <dd class="col-sm-10"><%= @warehouse.description %></dd>
-          <dt class="col-sm-2">Endereço:</dt>
-          <dd class="col-sm-10"><%= @warehouse.address %> - <%= @warehouse.city %>/<%= @warehouse.state %></dd>
-          <dt class="col-sm-2">CEP:</dt>
-          <dd class="col-sm-10"><%= @warehouse.postal_code %></dd>
-          <dt class="col-sm-2">Área Total:</dt>
-          <dd class="col-sm-10"><%= @warehouse.total_area %> m2</dd>
-          <dt class="col-sm-2">Área Útil:</dt>
-          <dd class="col-sm-10"><%= @warehouse.useful_area %> m2</dd>
-        </dl>
-      </div>
-    </div>
+  <div class="ls-box ls-board-box">
+    <header class="ls-info-header">
+      <h2 class="ls-title-3 ls-ico-eye"><%= @warehouse.name %></h2>
+      <%= link_to 'Voltar', root_path, class: 'ls-btn ls-btn-dark ls-text-md ls-btn-sm' %>
+    </header>
+    
+    <table class="ls-table ls-table-striped">
+      <tbody>
+        <tr>
+          <td class="ls-text-lg"><strong>Código: </strong><%= @warehouse.code %></td>
+        </tr>
+        <tr>
+          <td class="ls-text-lg"><strong>Descrição: </strong><%= @warehouse.description %></td>
+        </tr>
+        <tr>
+          <td class="ls-text-lg"><strong>Endereço: </strong><%= @warehouse.address %> - <%= @warehouse.city %>/<%= @warehouse.state %></td>
+        </tr>
+        <tr>
+          <td class="ls-text-lg"><strong>CEP: </strong><%= @warehouse.postal_code %></td>
+        </tr>
+        <tr>
+          <td class="ls-text-lg"><strong>Área Total: </strong><%= @warehouse.total_area %> m2</td>
+        </tr>
+        <tr>
+          <td class="ls-text-lg"><strong>Área Útil: </strong><%= @warehouse.useful_area %> m2</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 <% end %>
